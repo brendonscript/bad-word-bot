@@ -1,0 +1,5 @@
+{
+  "prefix": "!",
+  "command": "badwords",
+  "words": ["stupid", "idiot"]
+}
