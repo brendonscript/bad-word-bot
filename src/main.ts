@@ -5,9 +5,6 @@ const client = new Discord.Client();
 
 const main = async () => {
   try {
-    console.log('test');
-    await client.login(process.env.DISCORD_API_KEY);
-
     client.on('ready', () => {
       console.log(`Logged in as ${client.user.tag}!`);
     });
@@ -15,10 +12,11 @@ const main = async () => {
     // msg.guild.channels
     // channel.fetchMessages
     client.on('message', msg => {
+      console.log('message');
       if (msg.content.startsWith(badWords.prefix)) {
         const args = msg.content.substring(1).split(' ');
 
-        if (args[0] == badWords.command) {
+        if (args[0] === badWords.command) {
           const mainCommand = args[1];
 
           if (mainCommand.includes('help')) {
@@ -27,7 +25,7 @@ const main = async () => {
             const channels = msg.guild.channels;
 
             channels.forEach(async channel => {
-              if (channel.type == 'text') {
+              if (channel.type === 'text') {
                 const textChannel = channel as Discord.TextChannel;
                 const messages = await textChannel.fetchMessages();
                 const user = await msg.guild.fetchMember(
@@ -41,22 +39,11 @@ const main = async () => {
             });
             console.debug('User command');
           }
-          // } else if (mainCommand.includes('test')) {
-          //   const channels = msg.guild.channels;
-          //   const channel = msg.channel;
-
-          //   channels.forEach(async channel => {
-          //     if (channel.type == 'text') {
-          //       const textChannel = channel as Discord.TextChannel;
-          //       const messages = await textChannel.fetchMessages({ limit: 10 });
-          //       console.log(messages);
-          //     }
-          //   });
-          // }
-          // console.debug(args);
         }
       }
     });
+
+    await client.login(process.env.DISCORD_API_KEY);
   } catch (err) {
     console.log(err.message);
   }

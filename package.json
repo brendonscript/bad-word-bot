@@ -6,14 +6,12 @@
   "scripts": {
     "clean": "rimraf build/*",
     "move-env": "ts-node move-env",
-    "real-lint": "tslint -c tslint.json -p tsconfig.json --fix",
-    "lint": "",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "tsc": "tsc",
     "build": "npm-run-all clean lint tsc move-env",
     "dev:start": "npm-run-all build start",
     "dev": "nodemon --exec npm run dev:start",
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ."
   },
   "keywords": [],
   "author": "",
