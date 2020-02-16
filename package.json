@@ -2,17 +2,37 @@
   "name": "bad-word-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "build/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon app.ts"
+    "clean": "rimraf build/*",
+    "move-env": "ts-node move-env",
+    "real-lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "lint": "",
+    "tsc": "tsc",
+    "build": "npm-run-all clean lint tsc move-env",
+    "dev:start": "npm-run-all build start",
+    "dev": "nodemon --exec npm run dev:start",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "config": "^3.2.5",
     "discord.js": "^11.5.1",
-    "nodemon": "^2.0.2"
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@typeit/discord": "^1.0.3",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^13.7.1",
+    "@types/shelljs": "^0.8.6",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "shelljs": "^0.8.3",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
   }
 }
