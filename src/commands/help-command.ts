@@ -4,7 +4,7 @@ import logger from '../util/logger';
 
 export default class HelpCommand extends BaseCommand {
   constructor(command: Command) {
-    super(command);
+    super(command, 'help', 'HelpCommand');
   }
 
   run(): void {

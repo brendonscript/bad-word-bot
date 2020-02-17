@@ -5,7 +5,7 @@ import { TextChannel } from 'discord.js';
 
 export default class UserCommand extends BaseCommand {
   constructor(command: Command) {
-    super(command);
+    super(command, 'user', 'UserCommand');
   }
 
   async run(): Promise<void> {

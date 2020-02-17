@@ -4,6 +4,7 @@ import logger from './util/logger';
 import Command from './models/command';
 import HelpCommand from './commands/help-command.js';
 import UserCommand from './commands/user-command.js';
+import CommandMap from './commands/command-map.js';
 
 const client = new Discord.Client();
 
@@ -20,7 +21,8 @@ const main = async () => {
 
           if (command.getMainCommand() === badWords.command) {
             const secondaryCommand = command.getSecondaryCommand();
-
+            const commands = CommandMap.getInstance().getCommand('help');
+            console.log(commands);
             if (secondaryCommand.includes('help')) {
               const helpCommand = new HelpCommand(command);
               helpCommand.run();
